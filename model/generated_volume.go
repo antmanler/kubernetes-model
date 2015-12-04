@@ -17,6 +17,8 @@ type Volume struct {
 
 	Fc *FCVolumeSource `json:"fc,omitempty" yaml:"fc,omitempty"`
 
+	Flocker *FlockerVolumeSource `json:"flocker,omitempty" yaml:"flocker,omitempty"`
+
 	GcePersistentDisk *GCEPersistentDiskVolumeSource `json:"gcePersistentDisk,omitempty" yaml:"gce_persistent_disk,omitempty"`
 
 	GitRepo *GitRepoVolumeSource `json:"gitRepo,omitempty" yaml:"git_repo,omitempty"`

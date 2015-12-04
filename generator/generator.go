@@ -76,6 +76,11 @@ func generateFiles() error {
 func generateType(model model.Model) error {
 	modelType := stripVersion(model.ID)
 
+	if model.ID == "integer" {
+		// skip
+		return nil
+	}
+
 	output, err := os.Create(path.Join(CLIENT_OUTPUT_DIR, strings.ToLower("generated_"+addUnderscore(modelType))+".go"))
 	if err != nil {
 		return err
@@ -119,7 +124,12 @@ func getTypeMap(modelResource model.Model, modelType string) map[string]string {
 				if prop.Items.Type != "" {
 					result[fieldName] = "[]" + prop.Items.Type
 				} else if prop.Items.Ref != "" {
-					result[fieldName] = "[]" + stripVersion(prop.Items.Ref)
+					tp := stripVersion(prop.Items.Ref)
+					if tp == "integer" {
+						result[fieldName] = "[]int"
+					} else {
+						result[fieldName] = "[]" + tp
+					}
 				}
 			} else if prop.Type == "integer" {
 				if prop.Format != "" {

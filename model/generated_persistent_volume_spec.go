@@ -19,6 +19,8 @@ type PersistentVolumeSpec struct {
 
 	Fc *FCVolumeSource `json:"fc,omitempty" yaml:"fc,omitempty"`
 
+	Flocker *FlockerVolumeSource `json:"flocker,omitempty" yaml:"flocker,omitempty"`
+
 	GcePersistentDisk *GCEPersistentDiskVolumeSource `json:"gcePersistentDisk,omitempty" yaml:"gce_persistent_disk,omitempty"`
 
 	Glusterfs *GlusterfsVolumeSource `json:"glusterfs,omitempty" yaml:"glusterfs,omitempty"`
